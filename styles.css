@@ -58,9 +58,12 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
+    /* Gentler snapping */
     scroll-padding-top: 80px;
     /* Offset for fixed header */
+    height: 100%;
+    overflow-y: scroll;
 }
 
 body {
@@ -71,6 +74,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    min-height: 100%;
 }
 
 h1,
