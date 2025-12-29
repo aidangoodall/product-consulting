@@ -13,7 +13,7 @@
         minBlur: 0,               // Minimum blur in pixels
         scrollRange: 800,         // Scroll distance (px) to go from max to min blur
         throttleDelay: 10,        // Throttle delay for scroll event (ms)
-        scrambleTriggerY: 100     // Scroll depth to trigger text scramble
+        scrambleTriggerY: 20     // Scroll depth to trigger text scramble
     };
 
     // Cache DOM elements
@@ -182,6 +182,11 @@
     // Initialize Text Scramble
     if (wordTransformEl) {
         scrambleFx = new TextScramble(wordTransformEl);
+    }
+
+    // Initialize Lucide Icons
+    if (window.lucide) {
+        window.lucide.createIcons();
     }
 
     // Create throttled version of update function
