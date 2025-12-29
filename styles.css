@@ -4,18 +4,26 @@
 
 :root {
     /* Color Palette - Sophisticated & Modern */
-    --color-primary: #0A1929;      /* Deep blue-black */
-    --color-accent: #3B82F6;       /* Vibrant blue */
-    --color-accent-light: #60A5FA; /* Light blue */
-    --color-bg: #FFFFFF;           /* White */
-    --color-bg-alt: #F8FAFC;       /* Off-white */
-    --color-border: #E2E8F0;       /* Light gray */
-    --color-text: #1E293B;         /* Dark gray */
-    --color-text-muted: #64748B;   /* Muted gray */
+    --color-primary: #0A1929;
+    /* Deep blue-black */
+    --color-accent: #3B82F6;
+    /* Vibrant blue */
+    --color-accent-light: #60A5FA;
+    /* Light blue */
+    --color-bg: #FFFFFF;
+    /* White */
+    --color-bg-alt: #F8FAFC;
+    /* Off-white */
+    --color-border: #E2E8F0;
+    /* Light gray */
+    --color-text: #1E293B;
+    /* Dark gray */
+    --color-text-muted: #64748B;
+    /* Muted gray */
 
     /* Typography */
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-    --font-display: 'SF Pro Display', -apple-system, sans-serif;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    --font-display: 'Fraunces', serif;
 
     /* Spacing */
     --space-xs: 0.5rem;
@@ -50,6 +58,9 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 80px;
+    /* Offset for fixed header */
 }
 
 body {
@@ -62,7 +73,12 @@ body {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-display);
     font-weight: 700;
     line-height: 1.2;
@@ -159,6 +175,8 @@ ul {
     align-items: center;
     padding-top: 80px;
     overflow: hidden;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .hero-image-container {
@@ -262,12 +280,19 @@ ul {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateX(-50%) translateY(0);
     }
+
     40% {
         transform: translateX(-50%) translateY(-10px);
     }
+
     60% {
         transform: translateX(-50%) translateY(-5px);
     }
@@ -321,16 +346,24 @@ ul {
 
 .services {
     padding: var(--space-3xl) 0;
-    background: rgba(248, 250, 252, 0.7);
-    backdrop-filter: blur(10px);
+    /* Removed background to show hero image */
     position: relative;
     z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .section-title {
     font-size: clamp(2rem, 4vw, 3rem);
     text-align: center;
     margin-bottom: var(--space-3xl);
+    color: white;
+    /* Fix contrast against dark background */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .services-grid {
@@ -340,8 +373,8 @@ ul {
 }
 
 .service-card {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
     padding: var(--space-xl);
     border-radius: var(--border-radius);
     border: 1px solid rgba(226, 232, 240, 0.6);
@@ -389,10 +422,15 @@ ul {
 
 .approach {
     padding: var(--space-3xl) 0;
-    background: rgba(255, 255, 255, 0.65);
-    backdrop-filter: blur(10px);
+    /* Removed background to show hero image */
     position: relative;
     z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .approach-steps {
@@ -405,8 +443,8 @@ ul {
 .step {
     position: relative;
     padding: var(--space-xl);
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
     border-radius: var(--border-radius);
     transition: all 0.3s ease;
     border: 1px solid rgba(226, 232, 240, 0.5);
@@ -444,10 +482,15 @@ ul {
 
 .about {
     padding: var(--space-3xl) 0;
-    background: rgba(248, 250, 252, 0.7);
-    backdrop-filter: blur(10px);
+    /* Removed background to show hero image */
     position: relative;
     z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .about-grid {
@@ -468,6 +511,11 @@ ul {
     color: var(--color-text-muted);
     line-height: 1.8;
     margin-bottom: var(--space-md);
+    /* Improve readability on transparent background */
+    background: rgba(255, 255, 255, 0.8);
+    padding: var(--space-md);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(8px);
 }
 
 .expertise-tags {
@@ -495,8 +543,8 @@ ul {
 }
 
 .stats-card {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
     padding: var(--space-2xl);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-xl);
@@ -542,6 +590,12 @@ ul {
     color: white;
     position: relative;
     z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .contact-content {
@@ -609,6 +663,13 @@ ul {
         grid-template-columns: 1fr;
     }
 
+    .nav-logo {
+        font-size: 1.1rem;
+        /* Reduce size for long name */
+        max-width: 70%;
+        line-height: 1.2;
+    }
+
     .nav-menu {
         gap: var(--space-md);
     }
@@ -648,5 +709,102 @@ ul {
 
     .nav-menu {
         display: none;
+    }
+}
+
+/* ==========================================
+   OPTIONS SECTION
+   ========================================== */
+
+.options {
+    padding: var(--space-3xl) 0;
+    /* Removed background to show hero image */
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.option-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    padding: var(--space-xl);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* Ensure text contrast inside cards */
+    color: var(--color-text);
+}
+
+.option-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-accent);
+}
+
+.option-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-sm);
+    color: var(--color-primary);
+}
+
+.option-card p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+/* Make the last card (Full Scope) span full width */
+.option-card:last-child {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-xl);
+    text-align: left;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 249, 255, 0.95) 100%);
+    border: 2px solid var(--color-accent);
+}
+
+.option-card:last-child h3 {
+    margin-bottom: 0;
+    min-width: 200px;
+    font-size: 1.75rem;
+}
+
+.option-highlight::before {
+    /* Removed the 'Most Popular' ribbon as it might clutter the full-width layout */
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .option-card:last-child {
+        flex-direction: column;
+        text-align: left;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+
+    .option-card:last-child h3 {
+        margin-bottom: var(--space-sm);
+        min-width: auto;
     }
 }
