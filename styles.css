@@ -270,13 +270,17 @@ ul {
 
 .hero-highlight {
     font-size: 1.25rem;
-    font-weight: 600;
+    font-weight: 500;
     color: white;
-    background: linear-gradient(90deg, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0) 100%);
-    border-left: 4px solid var(--color-accent);
-    padding: var(--space-sm) var(--space-md);
-    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: 24px;
     margin: var(--space-lg) 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
 }
 
 .hero-cta {
