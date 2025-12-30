@@ -519,6 +519,13 @@ ul {
     border: 1px solid rgba(226, 232, 240, 0.5);
 }
 
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+}
+
 .step:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
@@ -531,13 +538,13 @@ ul {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: var(--space-sm);
     font-family: var(--font-display);
+    line-height: 1;
 }
 
 .step h3 {
     font-size: 1.5rem;
-    margin-bottom: var(--space-sm);
+    margin-bottom: 0;
 }
 
 .step p {
