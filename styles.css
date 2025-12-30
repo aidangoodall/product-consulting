@@ -528,7 +528,6 @@ ul {
 .about-visual {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     gap: var(--space-lg);
 }
 
@@ -540,6 +539,10 @@ ul {
     margin-bottom: 0;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: var(--shadow-sm);
+}
+
+.about-item:last-child {
+    margin-top: auto;
 }
 
 .about-item h3 {
