@@ -282,29 +282,75 @@
         <div class="container">
             <div class="contact-content">
                 <h2 class="section-title">Let's Work Together</h2>
-                <p class="contact-subtitle">Your call-to-action copy goes here</p>
-                <a href="mailto:your.email@example.com" class="btn btn-primary btn-large">Get in Touch</a>
+                <p class="contact-subtitle">Book a free intro call, or ask a question.</p>
+
+                <div class="contact-actions">
+                    <!-- Email CTA -->
+                    <div class="contact-cta-wrapper">
+                        <button class="contact-cta" id="emailBtn">
+                            <i data-lucide="mail"></i>
+                            <span>Email Me</span>
+                        </button>
+                        <div class="email-dropdown" id="emailDropdown">
+                            <button class="dropdown-item" id="copyEmailBtn">
+                                <i data-lucide="copy"></i>
+                                Copy email address
+                            </button>
+                            <a href="javascript:void(0)" class="dropdown-item" id="openEmailBtn">
+                                <i data-lucide="external-link"></i>
+                                Open in email client
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- LinkedIn CTA -->
+                    <a href="https://www.linkedin.com/in/aidan-goodall/" target="_blank" class="contact-cta">
+                        <i data-lucide="linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+
+                    <!-- Book Call CTA -->
+                    <button class="contact-cta" id="bookCallBtn">
+                        <i data-lucide="calendar"></i>
+                        <span>Book a Call</span>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">AG</div>
-                <div class="footer-links">
-                    <a href="https://www.linkedin.com/in/aidan-goodall/" target="_blank">LinkedIn</a>
-                    <a href="https://twitter.com/yourhandle" target="_blank">Twitter</a>
-                    <a href="mailto:your.email@example.com">Email</a>
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModalBtn">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-body">
+                <h3>Book a Call</h3>
+                <p>Calendar integration coming soon...</p>
+                <!-- Placeholder for Calendly/Google Calendar embed -->
+                <div
+                    style="height: 400px; background: #f1f5f9; display: flex; align-items: center; justify-content: center; border-radius: 8px; margin-top: 1rem;">
+                    <p style="color: #64748b;">Calendar Widget Placeholder</p>
                 </div>
             </div>
         </div>
-    </footer>
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="script.js"></script>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">Aidan Goodall</div>
+                    <div class="footer-copyright">
+                        &copy; 2024 Aidan Goodall. All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Lucide Icons -->
+        <script src="https://unpkg.com/lucide@latest"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>

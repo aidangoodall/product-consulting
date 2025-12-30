@@ -220,4 +220,89 @@
         });
     });
 
+    // Contact Section Interactivity
+    const emailBtn = document.getElementById('emailBtn');
+    const emailDropdown = document.getElementById('emailDropdown');
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const openEmailBtn = document.getElementById('openEmailBtn');
+    const bookCallBtn = document.getElementById('bookCallBtn');
+    const bookingModal = document.getElementById('bookingModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    // Obfuscated Email Configuration
+    // Split the email to prevent scraping: 'aidan' + '@' + 'aidangoodall.com' (example)
+    // TODO: Update these values with your actual email parts
+    const EMAIL_CONFIG = {
+        user: 'aidan',
+        domain: 'aidangoodall.com'
+    };
+
+    const getEmail = () => `${EMAIL_CONFIG.user}@${EMAIL_CONFIG.domain}`;
+
+    // Email Dropdown Toggle
+    if (emailBtn && emailDropdown) {
+        emailBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            emailDropdown.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!emailBtn.contains(e.target) && !emailDropdown.contains(e.target)) {
+                emailDropdown.classList.remove('active');
+            }
+        });
+    }
+
+    // Copy Email to Clipboard
+    if (copyEmailBtn) {
+        copyEmailBtn.addEventListener('click', async () => {
+            try {
+                const email = getEmail();
+                await navigator.clipboard.writeText(email);
+
+                // Visual feedback
+                const originalText = copyEmailBtn.innerHTML;
+                copyEmailBtn.innerHTML = '<i data-lucide="check"></i> Copied!';
+                setTimeout(() => {
+                    copyEmailBtn.innerHTML = originalText;
+                    if (window.lucide) window.lucide.createIcons();
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy email:', err);
+            }
+        });
+    }
+
+    // Open Email Client
+    if (openEmailBtn) {
+        openEmailBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = getEmail();
+            const subject = encodeURIComponent('Product Consulting Enquiry');
+            window.location.href = `mailto:${email}?subject=${subject}`;
+        });
+    }
+
+    // Booking Modal Logic
+    if (bookCallBtn && bookingModal && closeModalBtn) {
+        bookCallBtn.addEventListener('click', () => {
+            bookingModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            bookingModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close when clicking outside modal content
+        bookingModal.addEventListener('click', (e) => {
+            if (e.target === bookingModal) {
+                bookingModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
 })();
