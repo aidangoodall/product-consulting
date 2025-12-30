@@ -265,8 +265,8 @@
     // Split the email to prevent scraping: 'aidan' + '@' + 'aidangoodall.com' (example)
     // TODO: Update these values with your actual email parts
     const EMAIL_CONFIG = {
-        user: 'aidan',
-        domain: 'aidangoodall.com'
+        user: 'aidangoodall7',
+        domain: 'gmail.com'
     };
 
     const getEmail = () => `${EMAIL_CONFIG.user}@${EMAIL_CONFIG.domain}`;
