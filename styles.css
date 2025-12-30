@@ -1049,4 +1049,8 @@ ul {
         margin-bottom: var(--space-sm);
         min-width: auto;
     }
+
+    .side-nav {
+        display: none;
+    }
 }
