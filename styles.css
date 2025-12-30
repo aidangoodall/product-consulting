@@ -594,8 +594,7 @@ ul {
 
 .contact {
     padding: var(--space-3xl) 0;
-    background: linear-gradient(135deg, rgba(10, 25, 41, 0.95) 0%, rgba(30, 58, 95, 0.95) 100%);
-    backdrop-filter: blur(10px);
+    /* Removed background to show hero image */
     color: white;
     position: relative;
     z-index: 1;
@@ -673,16 +672,20 @@ ul {
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    background: white;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-xl);
     padding: var(--space-xs);
     min-width: 220px;
+    width: max-content;
+    white-space: nowrap;
     opacity: 0;
     visibility: hidden;
     transition: all 0.2s ease;
     z-index: 10;
-    color: var(--color-text);
+    color: white;
 }
 
 .email-dropdown.active {
@@ -701,7 +704,7 @@ ul {
     background: none;
     text-align: left;
     cursor: pointer;
-    color: var(--color-text);
+    color: white;
     font-size: 0.9rem;
     border-radius: var(--border-radius-sm);
     text-decoration: none;
@@ -709,15 +712,15 @@ ul {
 }
 
 .dropdown-item:hover {
-    background: var(--color-background-alt);
-    color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
 }
 
 .dropdown-item i,
 .dropdown-item svg {
     width: 16px;
     height: 16px;
-    color: var(--color-text-muted);
+    color: var(--color-accent-light);
 }
 
 /* Modal */
