@@ -609,6 +609,39 @@ ul {
     text-decoration: underline;
 }
 
+/* Company items with split layout */
+.company-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-md);
+    text-transform: none;
+}
+
+.company-link {
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.company-link:hover {
+    color: var(--color-accent);
+    text-decoration-color: var(--color-primary);
+    text-decoration-thickness: 3px;
+}
+
+.company-type {
+    color: var(--color-text-muted);
+    font-weight: 400;
+    font-size: 0.8rem;
+    text-align: right;
+}
+
 /* ==========================================
    CONTACT SECTION
    ========================================== */
