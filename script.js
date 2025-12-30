@@ -260,9 +260,6 @@
     const emailDropdown = document.getElementById('emailDropdown');
     const copyEmailBtn = document.getElementById('copyEmailBtn');
     const openEmailBtn = document.getElementById('openEmailBtn');
-    const bookCallBtn = document.getElementById('bookCallBtn');
-    const bookingModal = document.getElementById('bookingModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
 
     // Obfuscated Email Configuration
     // Split the email to prevent scraping: 'aidan' + '@' + 'aidangoodall.com' (example)
@@ -319,25 +316,5 @@
         });
     }
 
-    // Booking Modal Logic
-    if (bookCallBtn && bookingModal && closeModalBtn) {
-        bookCallBtn.addEventListener('click', () => {
-            bookingModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        });
-
-        closeModalBtn.addEventListener('click', () => {
-            bookingModal.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        // Close when clicking outside modal content
-        bookingModal.addEventListener('click', (e) => {
-            if (e.target === bookingModal) {
-                bookingModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
 
 })();
