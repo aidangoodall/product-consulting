@@ -517,11 +517,21 @@ ul {
     margin-bottom: var(--space-xl);
 }
 
+.about-subtitle {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: var(--space-xs);
+    font-weight: 600;
+    opacity: 0.8;
+}
+
 .about-text {
     font-size: 1.125rem;
     color: var(--color-text-muted);
     line-height: 1.8;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
     /* Improve readability on transparent background */
     background: rgba(255, 255, 255, 0.8);
     padding: var(--space-md);
