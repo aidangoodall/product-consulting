@@ -189,14 +189,22 @@
     // Update on resize (in case scroll position changes)
     window.addEventListener('resize', throttledUpdate, { passive: true });
 
-    // Trigger text scramble after 1 second delay
+    // Loop text scramble animation
     window.addEventListener('load', () => {
-        setTimeout(() => {
-            if (scrambleFx && !isScrambled) {
-                isScrambled = true;
-                scrambleFx.setText(targetText);
-            }
-        }, 1000);
+        const loop = () => {
+            // Display initial text ("from complexity") for 2 seconds
+            setTimeout(() => {
+                if (scrambleFx) {
+                    scrambleFx.setText(targetText).then(() => {
+                        // Display target text ("to clarity") for 5 seconds
+                        setTimeout(() => {
+                            scrambleFx.setText(initialText).then(loop);
+                        }, 5000);
+                    });
+                }
+            }, 2000);
+        };
+        loop();
     });
 
     // Optional: Add smooth scroll behavior to navigation links
