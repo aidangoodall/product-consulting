@@ -12,8 +12,7 @@
         maxBlur: 25,              // Maximum blur in pixels
         minBlur: 0,               // Minimum blur in pixels
         scrollRange: 800,         // Scroll distance (px) to go from max to min blur
-        throttleDelay: 10,        // Throttle delay for scroll event (ms)
-        scrambleTriggerY: 20     // Scroll depth to trigger text scramble
+        throttleDelay: 10         // Throttle delay for scroll event (ms)
     };
 
     // Cache DOM elements
@@ -65,17 +64,6 @@
             } else {
                 scrollIndicator.style.opacity = '1';
                 scrollIndicator.style.pointerEvents = 'auto';
-            }
-        }
-
-        // Handle Text Scramble Trigger
-        if (scrambleFx) {
-            if (scrollY > CONFIG.scrambleTriggerY && !isScrambled) {
-                isScrambled = true;
-                scrambleFx.setText(targetText);
-            } else if (scrollY <= CONFIG.scrambleTriggerY && isScrambled) {
-                isScrambled = false;
-                scrambleFx.setText(initialText);
             }
         }
 
@@ -200,6 +188,16 @@
 
     // Update on resize (in case scroll position changes)
     window.addEventListener('resize', throttledUpdate, { passive: true });
+
+    // Trigger text scramble after 1 second delay
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            if (scrambleFx && !isScrambled) {
+                isScrambled = true;
+                scrambleFx.setText(targetText);
+            }
+        }, 1000);
+    });
 
     // Optional: Add smooth scroll behavior to navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
