@@ -229,8 +229,10 @@
     // Active Section Tracking for Side Navigation
     const navLinks = document.querySelectorAll('.side-nav-menu a[data-section]');
     const sections = document.querySelectorAll('section[id]');
+    const sideNav = document.querySelector('.side-nav');
+    let collapseTimeout;
 
-    if (navLinks.length > 0 && sections.length > 0) {
+    if (navLinks.length > 0 && sections.length > 0 && sideNav) {
         // Create Intersection Observer for section tracking
         const observerOptions = {
             root: null,
@@ -251,6 +253,21 @@
                     if (activeLink) {
                         activeLink.classList.add('active');
                     }
+
+                    // Handle collapsible behavior
+                    clearTimeout(collapseTimeout);
+
+                    if (sectionId === 'services' || sectionId === 'options' || sectionId === 'about' || sectionId === 'contact') {
+                        // Start timer to collapse if not already collapsed
+                        collapseTimeout = setTimeout(() => {
+                            if (!sideNav.matches(':hover')) {
+                                sideNav.classList.add('collapsed');
+                            }
+                        }, 1500); // 2 second delay
+                    } else {
+                        // Expand immediately for hero/header sections
+                        sideNav.classList.remove('collapsed');
+                    }
                 }
             });
         }, observerOptions);
@@ -259,6 +276,41 @@
         sections.forEach(section => {
             sectionObserver.observe(section);
         });
+
+        // Hover behavior for manual expansion
+        sideNav.addEventListener('mouseenter', () => {
+            clearTimeout(collapseTimeout);
+            sideNav.classList.remove('collapsed');
+        });
+
+        sideNav.addEventListener('mouseleave', () => {
+            triggerAutoCollapse();
+        });
+
+        // Scroll to expand behavior
+        window.addEventListener('scroll', () => {
+            if (sideNav.classList.contains('collapsed')) {
+                sideNav.classList.remove('collapsed');
+            }
+            triggerAutoCollapse();
+        }, { passive: true });
+
+        function triggerAutoCollapse() {
+            clearTimeout(collapseTimeout);
+
+            // Re-trigger collapse if we're not in the hero section and not hovering
+            const activeLink = document.querySelector('.side-nav-menu a.active');
+            if (activeLink) {
+                const sectionId = activeLink.getAttribute('data-section');
+                if (sectionId !== 'hero' && sectionId !== '' && sectionId !== null) {
+                    collapseTimeout = setTimeout(() => {
+                        if (!sideNav.matches(':hover')) {
+                            sideNav.classList.add('collapsed');
+                        }
+                    }, 1500); // 2 second delay after activity stops
+                }
+            }
+        }
     }
 
     // Contact Section Interactivity
