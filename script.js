@@ -15,6 +15,17 @@
         throttleDelay: 10         // Throttle delay for scroll event (ms)
     };
 
+    /**
+     * Helper to track Umami events safely
+     * @param {string} eventName - Name of the event
+     * @param {Object} eventData - Optional metadata
+     */
+    function trackEvent(eventName, eventData = {}) {
+        if (window.umami && typeof window.umami.track === 'function') {
+            window.umami.track(eventName, eventData);
+        }
+    }
+
     // Cache DOM elements
     const heroImage = document.getElementById('heroImage');
     const scrollIndicator = document.querySelector('.scroll-indicator');
@@ -222,6 +233,9 @@
                     behavior: 'smooth',
                     block: 'start'
                 });
+
+                // Track internal navigation
+                trackEvent('nav_click', { section: href.replace('#', '') });
             }
         });
     });
@@ -281,6 +295,7 @@
         sideNav.addEventListener('mouseenter', () => {
             clearTimeout(collapseTimeout);
             sideNav.classList.remove('collapsed');
+            trackEvent('side_nav_hover', { action: 'expand' });
         });
 
         sideNav.addEventListener('mouseleave', () => {
@@ -333,7 +348,8 @@
     if (emailBtn && emailDropdown) {
         emailBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            emailDropdown.classList.toggle('active');
+            const isActive = emailDropdown.classList.toggle('active');
+            trackEvent('email_dropdown_toggle', { state: isActive ? 'open' : 'closed' });
         });
 
         // Close dropdown when clicking outside
@@ -354,6 +370,9 @@
                 // Visual feedback
                 const originalText = copyEmailBtn.innerHTML;
                 copyEmailBtn.innerHTML = '<i data-lucide="check"></i> Copied!';
+
+                trackEvent('copy_email_click');
+
                 setTimeout(() => {
                     copyEmailBtn.innerHTML = originalText;
                     if (window.lucide) window.lucide.createIcons();
@@ -370,7 +389,33 @@
             e.preventDefault();
             const email = getEmail();
             const subject = encodeURIComponent('Product Consulting Enquiry');
+
+            trackEvent('open_email_client_click');
+
             window.location.href = `mailto:${email}?subject=${subject}`;
+        });
+    }
+
+    // Track LinkedIn clicks
+    document.querySelectorAll('a[href*="linkedin.com"]').forEach(link => {
+        link.addEventListener('click', () => {
+            trackEvent('linkedin_click', { location: link.closest('section')?.id || 'unknown' });
+        });
+    });
+
+    // Track "Book a Call" clicks
+    const bookCallBtn = document.getElementById('bookCallBtn');
+    if (bookCallBtn) {
+        bookCallBtn.addEventListener('click', () => {
+            trackEvent('book_call_click');
+        });
+    }
+
+    // Also track the hero CTA button
+    const heroCtaBtn = document.querySelector('.hero-cta .btn');
+    if (heroCtaBtn) {
+        heroCtaBtn.addEventListener('click', () => {
+            trackEvent('hero_cta_click');
         });
     }
 
